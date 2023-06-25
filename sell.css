@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  form fieldset {
+    border: none;
+    margin-bottom: 20px;
+  }
+  
+  form legend {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  form input,
+  form textarea {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  form input[type="submit"],
+  form button {
+    background-color: #5e40d5;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+  }
+  
+  textarea {
+    height: 100px;
+  }
+  
+  .product-field {
+    margin-bottom: 20px;
+  }
+  
+  

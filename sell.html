@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sell Your Products</title>
+  <link rel="stylesheet" type="text/css" href="sell.css">
+  <script src="sell.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Sell Your Products</h1>
+    <form action="services.html" method="POST" enctype="multipart/form-data">
+      <fieldset>
+        <legend>Personal Information</legend>
+        <input type="text" id="name" name="name" placeholder="Name" required>
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+      </fieldset>
+      <fieldset id="productFields">
+        <legend>Product Details</legend>
+        <div class="product-field">
+          <input type="text" name="product_name[]" placeholder="Product Name" required>
+          <input type="file" name="product_image[]" accept="image/*" required>
+          <textarea name="description[]" placeholder="Description" required></textarea>
+          <button type="button" onclick="addProductField()">Add Another Product</button>
+        </div>
+      </fieldset>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+</html>

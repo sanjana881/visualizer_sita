@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homepage</title>
+    
+</head>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url("image/backdrop1.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .textbox {
+    background-color: rgba(255, 255, 255, 0.7); /* Adjust background color and opacity */
+    padding: 20px;
+  }
+
+  .textbox input[type="text"] {
+    width: 300px;
+    height: 30px;
+    font-size: 16px;
+    padding: 5px;
+  }
+</style>
+
+    
+
+
+
+
+
+
+
+
+<body>
+  <div class="textbox">
+    <div class="backdrop">
+      <form>
+          
+            <legend><b>Please select the companies to send meeting request</b> </legend>
+            <div>
+              <input type="checkbox" id="JB Group,MUMBAI" name="source" value="JB Group,MUMBAI">
+              <label for="JB Group,MUMBAI">JB Group,MUMBAI</label>
+            </div>
+            <div>
+              <input type="checkbox" id="ARS Group,DELHI" name="source" value="ARS Group,DELHI">
+              <label for="ARS Group,DELHI">ARS Group,DELHI</label>
+            </div>
+            <div>
+              <input type="checkbox" id="Aman Group,KERALA" name="source" value="AmanGroup,KERALA">
+              <label for="Aman Group,KERALA">Aman Group,KERALA</label>
+            </div>
+            <div>
+              <input type="checkbox" id="WE CO,HYDERABAD" name="source" value="WE CO,HYDERABAD">
+              <label for="WE CO,HYDERABAD">WE CO,HYDERABAD</label>
+            </div>
+            <div>
+              <input type="checkbox" id="AJ group,CHENNAI" name="source" value="AJ group,CHENNAI">
+              <label for="AJ group,CHENNAI">AJ group,CHENNAI</label>
+            </div>
+            <div>
+              <input type="checkbox" id="16RISE,KOCHI" name="source" value="16RISE,KOCHI">
+              <label for="16RISE,KOCHI">16RISE,KOCHI</label>
+            </div>
+            <div>
+              <input type="checkbox" id="GIASTORES,KOCHI" name="source" value="GIASTORES,KOCHI">
+              <label for="GIASTORES,KOCHI">GIASTORES,KOCHI</label>
+            </div>
+           
+          </form>
+          <div>
+              <button class="button" onclick="redirectToPage('submitted.html')">Submit form</button>
+            </div>
+  </div>
+  <script src="script.js"></script>
+  </div>
+</body>
+</html>

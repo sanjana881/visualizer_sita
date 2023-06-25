@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profit/Loss Analysis with Moving Average Prediction</title>
+    <link rel="stylesheet" type="text/css" href="dataanalysis.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Data Analysis</h1>
+    </header>
+    <label for="manufacturingCostInput">Enter manufacturing cost:</label>
+    <input type="number" id="manufacturingCostInput">
+    <br>
+    <label for="salesInput">Enter sales of each year (comma-separated):</label>
+    <input type="text" id="salesInput">
+    
+    <button onclick="generateGraph()">Generate Graph</button>
+    <canvas id="profitChart"></canvas>
+    <canvas id="predictedProfitChart"></canvas>
+    <p><b>Compare your Profit/Loss with existing markets</b></p>
+  <label for="my-dropdown">Select your domain:</label>
+  <select id="my-dropdown" onchange="performFunction()">
+    <option value="option1">Textile</option>
+    <option value="option2">Food</option>
+    <option value="option3">Handicraft</option>
+  </select>
+  <canvas id="lineChart"></canvas>
+  <p>For professional documentation </p>
+  <button class="button" onclick="redirectToPage('chat.html')">Click Here</button>
+  <script src="script.js"></script>
+   
+
+    <script>
+        // Function to generate the profit/loss graph
+        function generateGraph() {
+            // Get average manufacturing cost and sales data
+            var manufacturingCostInput = parseFloat(document.getElementById('manufacturingCostInput').value);
+            var salesInput = document.getElementById('salesInput').value;
+
+            
+            var salesData = salesInput.split(',').map(Number);
+
+            // Calculate profit/loss
+            var profitLossData = [];
+            for (var i = 0; i < salesData.length; i++) {
+                var profitLoss = salesData[i] - manufacturingCostInput;
+                profitLossData.push(profitLoss);
+            }
+            nextgraph(profitLossData);
+
+            // Predict future profit/loss using moving average method
+            var numYears = 5; // Number of years to predict
+            var futureProfitLossData = [];
+            var period = 3; // Moving average period
+            var sum = 0;
+
+            // Calculate moving average for the given years
+            for (var j = 0; j < profitLossData.length; j++) {
+                sum += profitLossData[j];
+
+                if (j >= period) {
+                    sum -= profitLossData[j - period];
+                    var average = sum / period;
+                    futureProfitLossData.push(average);
+                }
+            }
+
+            // Display actual profit/loss as a line graph
+            var ctx = document.getElementById('profitChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from(Array(profitLossData.length).keys()).map(i => i + 1),
+                    datasets: [{
+                        label: 'Actual Profit/Loss',
+                        data: profitLossData,
+                        borderColor: 'green',
+                        fill: false
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Years'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Profit/Loss'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Display predicted profit/loss as a line graph
+            var predictedProfitLossLabels = Array.from(Array(numYears).keys()).map(i => i + salesData.length + 1);
+            var predictedProfitLossDataset = Array.from(futureProfitLossData).concat(Array(numYears - futureProfitLossData.length).fill(null));
+
+            var predictedCtx = document.getElementById('predictedProfitChart').getContext('2d');
+            new Chart(predictedCtx, {
+                type: 'line',
+                data: {
+                    labels: predictedProfitLossLabels,
+                    datasets: [{
+                        label: 'Predicted Profit/Loss',
+                        data: predictedProfitLossDataset,
+                        borderColor: 'blue',
+                        fill: false
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Years'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Profit/Loss'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function nextgraph(profitLossData){
+            const inputValues = profitLossData;
+            const predefinedValues = [353.92, 343.43, 315.62, 222.65, 229];
+            const labels = ["Year 1", "Year 2", "Year 3", "Year 4", "Year 5"];
+            const ctx = document.getElementById('lineChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                labels: labels,
+                datasets: [
+            
+                    {
+                      label: 'Input Data',
+                      data: inputValues,
+                      borderColor: 'rgba(75, 192, 192, 1)',
+                       backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    },
+            
+               
+                    {
+                       label: 'Predefined Data',
+                       data: predefinedValues,
+                       borderColor: 'rgba(255, 99, 132, 1)',
+                       backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    }
+                ]
+             
+             },
+               options: {
+                scales: {
+                   y: {
+                    beginAtZero: true
+                   }
+                }
+             }
+            });
+
+
+        }
+
+        function performFunction() {
+            var selectedOption = document.getElementById("my-dropdown").value;
+            if (selectedOption === "option1") {
+                nextgraph();
+               
+            } else if (selectedOption === "option2") {
+                nextgraph();
+            } else if (selectedOption === "option3") {
+                nextgraph();
+            }
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Window Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .chat-container {
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    
+    .chat-header {
+      background-color: #f2f2f2;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+    
+    .chat-messages {
+      max-height: 300px;
+      overflow-y: auto;
+      padding: 10px;
+    }
+    
+    .message {
+      margin-bottom: 10px;
+    }
+    
+    .user-message {
+      background-color: #d9edf7;
+      padding: 8px;
+      border-radius: 8px;
+      float: right;
+    }
+    
+    .bot-message {
+      background-color: #f6f6f6;
+      padding: 8px;
+      border-radius: 8px;
+      float: left;
+    }
+    
+    .chat-input {
+      padding: 10px;
+      display: flex;
+    }
+    
+    .chat-input input {
+      flex-grow: 1;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    
+    .chat-input button {
+      padding: 5px 10px;
+      margin-left: 5px;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .chat-input button:hover {
+      background-color: #45a049;
+    }
+  </style>
+    <script>
+        function sendMessage(message) {
+          var chatMessages = document.getElementById("chat-messages");
+          var messageDiv = document.createElement("div");
+          messageDiv.className = "message bot-message";
+          messageDiv.textContent = message;
+          chatMessages.appendChild(messageDiv);
+    
+          // Scroll to the bottom of the chat messages
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    
+        function addMessage(message, sender) {
+          var chatMessages = document.getElementById("chat-messages");
+          var messageDiv = document.createElement("div");
+          messageDiv.className = "message " + sender + "-message";
+          messageDiv.textContent = message;
+          chatMessages.appendChild(messageDiv);
+    
+          // Scroll to the bottom of the chat messages
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    
+        function handleUserInput() {
+          var messageInput = document.getElementById("message-input");
+          var message = messageInput.value;
+    
+          if (message.trim() !== "") {
+            addMessage(message, "user");
+            messageInput.value = "";
+    
+            // Perform necessary actions or send the message to a server for processing
+    
+            // Example responses from the bot
+            var botResponses = [
+              
+              "Ok. Please provide your contact details and we will get to you soon",
+              "Thank you."
+            ];
+    
+            var randomIndex = Math.floor(Math.random() * botResponses.length);
+            var botResponse = botResponses[randomIndex];
+            setTimeout(function () {
+              addMessage(botResponse, "bot");
+            }, 1000); // Delay the bot's response by 1 second
+          }
+        }
+    
+        window.onload = function() {
+          // Initial bot message
+          var initialBotMessage = "Hello. Please type below the contents you require in your documentation";
+          sendMessage(initialBotMessage);
+        };
+    </script>
+</head>
+    <body>
+      <div class="chat-container">
+        <div class="chat-header">Chat Window</div>
+        <div id="chat-messages" class="chat-messages"></div>
+        <div class="chat-input">
+          <input type="text" id="message-input" placeholder="Type your message...">
+          <button onclick="handleUserInput()">Send</button>
+        </div>
+      </div>
+      <button class="button" onclick="redirectToPage('submitted.html')">submit</button>
+  <script src="script.js"></script>
+   
+    </body>
+
+</html>
